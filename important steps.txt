@@ -1,0 +1,20 @@
+Restful API Important Steps
+
+1. set up "package.json" (npm init)
+2. download express framework (npm install --save express)
+	-creates node_modules folder and "package-lock.json"
+3. create server.js (setting up server) and app.js (spinning up express framework which helps handling requests)
+4. install nodemon framework to avoid having to restart servers every change (npm install --save-dev nodemon)
+	-add "start": "nodemon server.js" under "scripts" in package.json
+	-start server by "npm start"
+5. install morgan framework to log requests (npm install --save morgan)
+6. install body-parser framework to parse through body of incoming requests easier (npm install --save body-parser)
+7. Setup MongoDB atlas (database on their cloud)
+8. install mongoose to use as a connection driver (npm install --save mongoose)
+
+
+
+
+Database User
+username: minsookime
+password: restfulapipassword
