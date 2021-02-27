@@ -8,12 +8,14 @@ const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
 //connecting mongoDB
-const mongoDB_URI = 'mongodb+srv://minsookime:restfulapipassword@cluster0.tfwft.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const mongoDB_URI = 'mongodb+srv://minsookime:' + process.env.MONGO_ATLAS_PW + '@cluster0.tfwft.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 mongoose.connect(mongoDB_URI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true
 });
+
+mongoose.Promise = global.Promise;
 
 mongoose.connection.on('connected', () => {
     console.log("Mongoose is connected!!!!");
