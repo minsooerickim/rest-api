@@ -1,4 +1,5 @@
 Restful API Important Steps
+('--save' means to "add an entry to package.json)
 
 1. set up "package.json" (npm init)
 2. download express framework (npm install --save express)
@@ -17,10 +18,37 @@ after lots of coding....
 9. install multer (npm install --save multer)
 	-similar to body-parser from step 6. (body-parser can't parse form-data)
 	-able to parse incoming bodies, but specifically form-data bodys, not JSON
+10. install bcrypt.js (npm install bcrypt --save) to get the hashing library
+	-there is a translation for hashed common words so that's why 'salt' meaning we add random strings in the
+	 original plain text BEFORE hashing; This way you can't translate by googling the hash.
+	-number of salting rounds (10 is considered safe)
+	-more info (https://github.com/kelektiv/node.bcrypt.js)
+11. email validation pattern ([a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)
+	-found from https://stackoverflow.com/questions/46155/how-to-validate-an-email-address-in-javascript
+12. install jsonwebtoken (npm install jsonwebtoken --save)
+	-github (https://github.com/auth0/node-jsonwebtoken)
+	-used for webtokens, signing and all that jazz
 
 
+
+
+999. Not from tutorial, BUT for storing environmental variables
+	download dotenv package (npm install dotenv)
+
+	MONGO_ATLAS_PW=xxxxx
+	JWT_KEY=secret_this_should_be_longer
+
+	in app.js, require('dotenv').config()
+
+	then acces with process.env.VARNAME
 
 
 Database User
 username: minsookime
 password: restfulapipassword
+
+keys
+"env": {
+        "MONGO_ATLAS_PW": "restfulapipassword",
+        "JWT_KEY": "youwillneverguessit"
+  }
