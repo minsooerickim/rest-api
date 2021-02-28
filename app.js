@@ -30,6 +30,14 @@ mongoose.connection.on('connected', () => {
 // });
 
 app.use(morgan('dev'));
+/*'/uploads ignores the /uploads when you access it in the browser cuz u gotta 
+void the /uploads when accessing it normally which is inconvenient
+
+http://localhost:3000/uploads/profile%20picture.JPG would normally not work
+http://localhost:3000/profile%20picture.JPG this would only work 
+
+but now with 'uploads', the top method with /uploads path works but not the bottom method*/
+app.use('/uploads', express.static('uploads')); //makes the 'uploads' folder publically available so iamge can be accessed using GET
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 

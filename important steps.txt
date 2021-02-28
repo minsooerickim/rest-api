@@ -12,6 +12,12 @@ Restful API Important Steps
 7. Setup MongoDB atlas (database on their cloud)
 8. install mongoose to use as a connection driver (npm install --save mongoose)
 
+after lots of coding....
+
+9. install multer (npm install --save multer)
+	-similar to body-parser from step 6. (body-parser can't parse form-data)
+	-able to parse incoming bodies, but specifically form-data bodys, not JSON
+
 
 
 
