@@ -1,5 +1,6 @@
 {
     "env": {
-        "MONGO_ATLAS_PW": "restfulapipassword"
+        "MONGO_ATLAS_PW": "restfulapipassword",
+        "JWT_KEY": "youwillneverguessit" 
     }
 }

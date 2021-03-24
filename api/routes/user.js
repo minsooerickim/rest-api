@@ -3,9 +3,10 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const User = require('../models/user');
-const { token } = require('morgan');
+// const { token } = require('morgan');
 
 router.post('/signup', (req, res, next) => {
     //checking for duplicate emails
@@ -89,7 +90,8 @@ router.post('/login', (req, res, next) => {
                             userId: user[0]._id
                         }, 
                         //privateKey (env key)
-                        process.env.JWT_KEY,
+                        // process.env.JWT_KEY,
+                        'youwillneverguessit',
                         //time
                         {
                             expiresIn: "1h"
@@ -103,7 +105,7 @@ router.post('/login', (req, res, next) => {
                 return res.status(401).json({
                     message: 'Auth failed'
                 });
-            })
+            });
         })
         .catch(err => {
             console.log(err);
@@ -127,6 +129,26 @@ router.delete('/:userId', (req, res, next) => {
                 error: err
             });
         });
+})
+
+//get all users
+router.get('/', (req, res, next) => {
+    User.find()
+        .select('email _id')
+        .exec()
+        .then(docs => {
+            res.status(200).json({
+                count: docs.length,
+                users: docs.map(doc => {
+                    return {
+                        _id: doc._id
+                    }
+                })
+            })
+        })
+        .catch(err => {
+            res.status(500).json(err);
+        })
 })
 
 module.exports = router;

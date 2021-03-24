@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+const checkAuth = require('../middleware/check-auth');
 
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
@@ -67,8 +68,8 @@ router.get('/', (req, res, next) => {
             });
         });
 });
-
-router.post('/', upload.single('productImage')/*single means it only takes and parses one file, and 'productImage' is the name for the file*/, (req, res, next) => {
+//arguments run left to right, so we add middleware(checkAuth) 2nd to check auth (protecting the route)
+router.post('/', checkAuth, upload.single('productImage')/*single means it only takes and parses one file, and 'productImage' is the name for the file*/, (req, res, next) => {
     console.log(req.file); //req.file is new object available with the upload.single('productImage')
     const product = new Product({
         _id: new mongoose.Types.ObjectId(),

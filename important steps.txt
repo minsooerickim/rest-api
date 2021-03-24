@@ -52,3 +52,7 @@ keys
         "MONGO_ATLAS_PW": "restfulapipassword",
         "JWT_KEY": "youwillneverguessit"
   }
+
+
+FIX ME:
+	fix invalid jwt signature
